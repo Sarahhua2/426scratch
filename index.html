@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>COMP 426 Project</h1>
+    <form action="/profile" method="post">
+        <h1>Register</h1>
+      
+        <fieldset>
+          <legend>Basic Info</legend>
+      
+          <label for="name">Name <input type="text" class="name" name="name" placeholder="your name" value="" required></label>
+      
+      
+          <label for="email">Email <input type="email" class="email" name="user_email" placeholder="email@domain.com" value="" required></label>
+      
+          
+      
+          <!-- <label for="password">Password</label>
+      
+          <input type="password" id="password" name="user_password" placeholder="your password" value="" required>
+        
+          <label for="bio">Bio Sketch</label>
+
+          <textarea id="bio" name="user_bio" placeholder="what do you want us to know?"></textarea>
+       -->
+        </fieldset>
+      
+        <button class="submit">Submit</button>
+      
+      </form>
+
+      <!-- adds event listener to the submit button and, on click, calls the POST /profile api -->
+      <script>
+        let myName = document.querySelector(".name");
+        let myEmail = document.querySelector(".email");
+        let submit = document.querySelector(".submit");
+
+        submit.addEventListener("click",() => {
+            let obj = {
+                name: myName.value,
+                email: myEmail.value
+            };
+
+            fetch("/profile", {
+                method: "POST", 
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body:JSON.stringify(obj)
+            });
+
+        })
+      </script>
+</body>
+</html>
